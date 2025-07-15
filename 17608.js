@@ -30,24 +30,20 @@
 
 
 const fs = require("fs");
-const input = fs.readFileSync("input.txt").toString().trim().split("\n");
+const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 
 // const fs = require("fs");
 // const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
-
 const arr = []
-
 while (input.length) {
-  arr.push(parseInt(input.pop()))
+  arr.push(Number(input.pop()))
 }
-
-let count = 1
-let cur = arr[0]
-for (let i = 1 ; i <= arr.length; i++) {
+let count = 0
+let cur = 0
+for (let i = 0 ; i < arr.length; i++) {
   if (cur < arr[i]) {
     count++
     cur = arr[i]
   }
 }
-
 console.log(count);
