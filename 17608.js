@@ -35,7 +35,7 @@ const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 // const fs = require("fs");
 // const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 const arr = []
-while (input.length) {
+while (input.length - 1) {
   arr.push(Number(input.pop()))
 }
 let count = 0
