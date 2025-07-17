@@ -6,6 +6,8 @@ const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 
 const [count, difference] = input[0].split(" ").map(Number)
 input.shift()
+
+console.log(count, difference)
 let answer = 0
 for (let i = 0; i < count; i++) {
   let j = 1
