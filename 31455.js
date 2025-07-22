@@ -4,59 +4,60 @@ const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 // const fs = require("fs");
 // const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
-let count = Number(input[0])
-let quest = 1
-let answer = 0
-const slice = (repeat, quest) => {
-  
-  let total = 0
-  for (let i = 1; i <= repeat; i++) {
-    total += input[quest + i].split("").reduce((acc, cur) => acc + Number(cur), 0)
-    console.log(total)
-  }
-  let pos = total % 4
-  
-  switch (pos) {
-    case 0 : answer += total - input[quest + 1][0]
-      break;
-    case 1 : answer += total - input[quest + 1][1]
-      break;
-    case 2 : answer += total - input[quest + 2][0]
-      break;
-    case 3 : answer += total - input[quest + 2][1]
-      break;
-  }
+let T = Number(input[0]);
+let idx = 1;
 
+function solve(arr) {
+  let remain = { value: 0 };
+  
+  const divide = (r, c, size) => {
+    if (size === 1) return;
+    
+    let total = 0;
+    for (let i = r; i < r + size; i++) {
+      for (let j = c; j < c + size; j++) {
+        total += arr[i][j];
+      }
+    }
+    
+    let eatenIdx = total % 4;
+    
+    const half = size / 2;
+    const areas = [
+      [r, c],               // 0번: 왼쪽 위
+      [r, c + half],        // 1번: 오른쪽 위
+      [r + half, c],        // 2번: 왼쪽 아래
+      [r + half, c + half]  // 3번: 오른쪽 아래
+    ];
+    console.log(areas)
+    for (let i = 0; i < 4; i++) {
+      const [nr, nc] = areas[i];
+      if (i === eatenIdx) continue;
+      
+      if (half === 1) {
+        remain.value += arr[nr][nc];
+      } else {
+        divide(nr, nc, half);
+      }
+    }
+  };
+  
+  divide(0, 0, arr.length);
+  return remain.value;
 }
 
-let i = 0
-while (count > i) {
-  let repeat = Number(input[quest])
-  
-  let total = 0
-  let arr = []
-  for (let i = 1; i <= repeat; i++) {
-    total += input[quest + i].split("").reduce((acc, cur) => acc + Number(cur), 0)
+for (let t = 0; t < T; t++) {
+  let N = Number(input[idx++]);
+  let arr = [];
+  for (let i = 0; i < N; i++) {
+    arr.push(input[idx++].split("").map(Number));
   }
-  if (repeat / 2 !== 1) {
-  
-  }
-  let pos = total % 4
-  
-  switch (pos) {
-    case 0 : slice(repeat / 2)
-      break
-    case 1 : slice(repeat / 2)
-      break
-    case 2 : slice(repeat / 2)
-      break
-    case 3 : slice(repeat / 2)
-      break
-  }
-  
-  quest += repeat + 1
-  i++
+  console.log(solve(arr));
 }
 
-console.log(answer)
+
+
+
+
+
 
