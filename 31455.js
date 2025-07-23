@@ -29,7 +29,6 @@ function solve(arr) {
       [r + half, c],        // 2번: 왼쪽 아래
       [r + half, c + half]  // 3번: 오른쪽 아래
     ];
-    console.log(areas)
     for (let i = 0; i < 4; i++) {
       const [nr, nc] = areas[i];
       if (i === eatenIdx) continue;
@@ -43,6 +42,7 @@ function solve(arr) {
   };
   
   divide(0, 0, arr.length);
+  console.log(remain.value)
   return remain.value;
 }
 
