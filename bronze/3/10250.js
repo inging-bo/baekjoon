@@ -6,20 +6,18 @@ const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 
 const T = Number(input[0])
 
+let floor = 100
+let room = 1
+
 for (let i = 1; i <= T; i++) {
-  const [num, str] = input[i].split(" ")
-  const number = Number(num)
-  let arr = [...str]
-  for (let i = 0; i < str.length; i++) {
-    let j = 1
-    while (number > j) {
-      arr[i] += str[i]
-      j++
-    }
+  const [H , W, N] = input[i].split(" ").map(Number)
+  if (Math.floor(N / H) === N / H) {
+    room *= N / H
+  } else {
+    room *= Math.floor(N / H) + 1
   }
-  console.log(arr.join(""))
+  floor *= N % H === 0 ? H : N % H
+  console.log(floor + room)
+  floor = 100
+  room = 1
 }
-
-
-
-
