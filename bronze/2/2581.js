@@ -9,25 +9,22 @@ const N = +input[1]
 
 let min = []
 for (let i = M; i <= N; i++) {
-
-  let half = Math.ceil(i / 2)
-  console.log(half)
   let j = 2
-  while (half >= j) {
-    if (half === j) {
-      min.push(i)
-    }
+  while (i >= j) {
     if (i % j === 0) {
       break
     }
     j++
+  }
+  if (i === j) {
+    min.push(i)
   }
 }
 if (min.length === 0) {
   console.log(-1)
 } else {
   console.log(min.reduce((a,b) => a + b))
-  console.log(Math.min(...min))
+  console.log(min[0])
 }
 
 
