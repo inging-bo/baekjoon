@@ -6,29 +6,25 @@ const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 
 const [N, M] = input[0].split(" ").map(Number)
 
-let test = []
+let visited = Array.from({length : N + 1} , () => false)
+let arr = []
 let ans = []
-function back(num, depth) {
+function back(depth) {
   if (depth === 0) {
-    test.push(num)
-    console.log(test)
+    ans.push([...arr])
     return
   }
-  test.push(num)
   for (let i = 1; i <= N; i++) {
-    if (!test.includes(i)) {
-      back(i, depth - 1)
-      test.pop()
+    if (!visited[i]) {
+      visited[i] = true
+      arr.push(i)
+      back(depth - 1)
+      arr.pop()
+      visited[i] = false
     }
   }
-  test = []
 }
-for (let i = 1; i <= N; i++) {
-  back(i, M)
-}
-
-console.log(ans)
-
-
+back(M)
+console.log(ans.map(arr => arr.join(" ")).join("\n"))
 
 
