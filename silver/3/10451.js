@@ -15,6 +15,7 @@ for (let i = 0; i < (input.length -1) / 2; i++) {
   for (let j = 1; j <= num; j++) {
     line[j].push(node[j - 1])
   }
+  console.log(line)
   function dfs(n) {
     if (visited[n]) return
     visited[n] = true
