@@ -3,36 +3,24 @@ const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 
 // const fs = require("fs");
 // const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
-
-function insert(root, word) {
-  let node = root;
-  for (const ch of word) {
-    if (!node[ch]) node[ch] = {};
-    node = node[ch];
-  }
-  node.end = true; // 단어 끝 표시
-}
-
-function startsWith(root, prefix) {
-  let node = root;
-  for (const ch of prefix) {
-    if (!node[ch]) return false;
-    node = node[ch];
-  }
-  return true;
-}
-
-// ----------------------
 const [N, M] = input[0].split(" ").map(Number);
-const root = {};
+const setS = input.slice(1, 1 + N);
+const strM = input.slice(1 + N);
+console.log(setS)
+console.log(strM)
+let anw = 0;
 
-for (let i = 1; i <= N; i++) {
-  insert(root, input[i]);
-}
-console.log(root)
-let count = 0;
-for (let j = N + 1; j <= N + M; j++) {
-  if (startsWith(root, input[j])) count++;
-}
-console.log(count);
+const checkStr = (str) => {
+  for (let i = 0; i < N; i++) {
+    if (setS[i][0] !== str[0] || setS[i][str.length - 1] !== str[str.length - 1])
+      continue;
+    if (setS[i].slice(0, str.length) === str) return true;
+  }
+  return false;
+};
 
+strM.forEach((str) => {
+  if (checkStr(str)) anw += 1;
+});
+
+console.log(anw);
