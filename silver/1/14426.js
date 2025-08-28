@@ -3,24 +3,34 @@ const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 
 // const fs = require("fs");
 // const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
+
 const [N, M] = input[0].split(" ").map(Number);
-const setS = input.slice(1, 1 + N);
-const strM = input.slice(1 + N);
-console.log(setS)
-console.log(strM)
-let anw = 0;
 
-const checkStr = (str) => {
-  for (let i = 0; i < N; i++) {
-    if (setS[i][0] !== str[0] || setS[i][str.length - 1] !== str[str.length - 1])
-      continue;
-    if (setS[i].slice(0, str.length) === str) return true;
+let count = 0
+let root = {}
+
+function insert(str) {
+  let node = root
+  for (const ch of str) {
+    if (!node[ch]) node[ch] = {}
+    node = node[ch]
   }
-  return false;
-};
+}
 
-strM.forEach((str) => {
-  if (checkStr(str)) anw += 1;
-});
+function findWord(str) {
+  let node = root
+  for (const ch of str) {
+    if (!node[ch]) return false
+    node = node[ch]
+  }
+  return true
+}
 
-console.log(anw);
+for (let i = 1; i <= N; i++) {
+  insert(input[i])
+}
+
+for (let i = N + 1; i <= N + M; i++) {
+  if (findWord(input[i])) count++
+}
+console.log(count)
