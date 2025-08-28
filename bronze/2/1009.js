@@ -4,31 +4,21 @@ const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 // const fs = require("fs");
 // const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
-const N = BigInt(input[0])
-let nums = []
-for (let i = 1n; i <= N; i++) {
-  let [num, pow] = input[i].split(" ").map(BigInt)
-  
-  let mod = BigInt(10);
-  
-  let result = 1n;
-  while (pow > 0n) {
-    if (pow % 2n === 1n) {
-      result = (result * num) % mod;
-    }
-    num = (num * num) % mod;
-    pow = pow / 2n;
+const N = input[0]
+for (let i = 1; i <= N; i++) {
+  const [a, b] = input[i].split(" ").map(Number);
+  let j = 1
+  let ans = 1
+  while (b >= j) {
+    ans = ans * a
+    ans = +ans.toString().slice(-1)
+
+    j++
   }
-  nums.push(result)
+
+  console.log(ans === 0 ? 10 : ans)
 }
-for (let i = 0n; i < nums.length; i++) {
-  if (nums[i] % 10n === 10n) {
-    console.log(10)
-  } else {
-    let answer = nums[i] % 10n
-    console.log(answer.toString())
-  }
-}
+
 
 
 
