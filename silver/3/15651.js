@@ -14,15 +14,13 @@ function back(first, depth) {
     ans.push([...arr])
     return
   }
-  let j = first
+  let j = 1
   while (N >= j) {
-    if (!visited[j]) {
-      visited[j] = true
-      arr.push(j)
-      back(j, depth - 1)
-      arr.pop()
-      visited[j] = false
-    }
+    visited[j] = true
+    arr.push(j)
+    back(j, depth - 1)
+    arr.pop()
+    visited[j] = false
     j++
   }
 }
