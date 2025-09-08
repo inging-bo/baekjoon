@@ -21,7 +21,6 @@ function back(depth) {
       arr.push(j)
       back(depth - 1)
       arr.pop()
-      visited[j] = false
     }
     j++
   }
