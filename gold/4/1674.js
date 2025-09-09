@@ -16,13 +16,16 @@ function find(num) {
   if (parent[num] !== num) parent[num] = find(parent[num])
   return parent[num]
 }
-
 function union(a, b) {
   const rootA = find(a)
   const rootB = find(b)
 
   if (rootA === rootB) return false;
-  parent[rootB] = rootA
+  if (parent[rootA] < parent[rootB]) {
+    parent[rootB] = rootA
+  } else if (parent[rootB] < parent[rootA]) {
+    parent[rootA] = rootB
+  }
   return true;
 }
 
@@ -30,15 +33,14 @@ const mst = [];
 let mstWeight= 0;
 
 for (const [u, v, w] of edges) {
+  if (N === 2) break
   if (union(u, v)) {
     mst.push([u,v,w]);
     mstWeight += w;
-
-    if (mst.length === N - 1 ) break
+    if (mst.length === N - 2) break
   }
 }
-console.log(mst)
-console.log(parent)
+console.log(mstWeight)
 // console.log(mstWeight)
 
 
