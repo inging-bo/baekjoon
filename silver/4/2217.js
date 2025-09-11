@@ -5,22 +5,22 @@ const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 // const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
 const N = Number(input[0])
-let arr = []
-let ans = []
-for (let i = 1; i <= N; i++) {
-  arr.push(+input[i])
-}
-arr.sort((a,b) => b - a)
+let node = Array.from({length : N + 1}, () => 0)
+let queue = [0]
 
-for (let i = 0; i < arr.length; i++) {
-  ans.push(arr[i])
-  
-  let min = ans[ans.length - 1]
-  if (min * ans.length > arr[i - 1] * (ans.length - 1) && i !== 0) {
-    console.log(min * ans.length)
-    return
+function heap(num) {
+  queue.push(num)
+  let index = queue.length - 1
+  while (index > 1) {
+    let parent = Math.floor(index / 2)
+    if (queue[index] > queue[parent]) break
+    [queue[index] , queue[parent]] = [queue[parent] , queue[index]]
+    index = parent
   }
 }
 
+for (let i = 1; i <= N; i++) {
+  heap(+input[i]) // 10 , 0
+}
 
-
+console.log(queue)
