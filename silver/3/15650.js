@@ -10,6 +10,8 @@ let visited = Array.from({length:N + 1}, () => 0)
 let ans = []
 let arr = []
 function back(first, depth) {
+  console.log(first, depth)
+  console.log(arr)
   if (depth === 0) {
     ans.push([...arr])
     return

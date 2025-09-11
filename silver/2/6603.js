@@ -10,6 +10,7 @@ let total = []
 let arr = []
 
 function back(start, depth, num, visited) {
+  console.log(arr)
   if (depth === 6) {
     total.push([...arr])
     return
