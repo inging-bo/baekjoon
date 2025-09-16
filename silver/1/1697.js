@@ -6,19 +6,22 @@ const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 
 const [N, K] = input[0].split(" ").map(Number)
 
-let arr = []
-let arrive = N
-let queue = [N]
-while (arrive !== 10) {
-  arrive = queue.shift()
-  if (arrive - 1 > 0) {
-    queue.push(arrive - 1)
+let visited = Array(100001).fill(false)
+
+let queue = []
+let head = 0
+queue.push([N, 0])
+
+while (1) {
+  let [cur, dist] = queue[head++]
+  if (cur === K) {
+    console.log(dist)
+    return
   }
-  queue.push(arrive + 1)
-  queue.push(arrive * 2)
-  for (let i = 0; i < queue.length; i++) {
-    queue[i]
+  for (let next of [cur - 1, cur + 1, cur * 2]) {
+    if (next >= 0 && next <= 100001 && !visited[next]) {
+      visited[next] = true
+      queue.push([next, dist + 1])
+    }
   }
 }
-console.log(queue)
-
