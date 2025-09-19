@@ -1,2 +1,7 @@
-5
-1 5 2 3
+6 75000
+8 other
+3 bathroom
+2 bathroom
+10 kitchen
+16 bedroom
+7 balcony
