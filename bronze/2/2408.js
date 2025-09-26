@@ -27,16 +27,6 @@ for (let i = 1; i < input.length; i++) {
 
 while (stack.length) output.push(stack.pop());
 
-function divFloor(a, b) {
-  let q = a / b;   // 기본 BigInt 나눗셈 (truncate toward 0)
-  let r = a % b;   // 나머지
-  // 보정: 나머지가 0이 아니고, a와 b 부호가 다르면 floor 내림
-  if (r !== 0n && (a < 0n) !== (b < 0n)) {
-    q -= 1n;
-  }
-  return q;
-}
-
 let calcStack = [];
 for (let token of output) {
   if (typeof token === "bigint") {
@@ -47,7 +37,7 @@ for (let token of output) {
     if (token === "+") calcStack.push(a + b);
     else if (token === "-") calcStack.push(a - b);
     else if (token === "*") calcStack.push(a * b);
-    else if (token === "/") calcStack.push(divFloor(a, b));
+    else if (token === "/") calcStack.push(a / b);
   }
 }
 
