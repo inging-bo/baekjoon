@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_레이어_1" data-name="레이어 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#_무제_그라디언트_12);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+    <linearGradient id="_무제_그라디언트_12" data-name="무제 그라디언트 12" x1="256" y1="0" x2="256" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9420f8"/>
+      <stop offset="1" stop-color="#2a5df9"/>
+    </linearGradient>
+  </defs>
+  <rect class="cls-1" width="512" height="512"/>
+  <path class="cls-2" d="M468.97,256c0,117.62-95.35,212.97-212.97,212.97S43.03,373.62,43.03,256,138.38,43.03,256,43.03s212.97,95.35,212.97,212.97ZM256,97.45c-87.57,0-158.55,70.99-158.55,158.55s70.99,158.55,158.55,158.55,158.55-70.99,158.55-158.55-70.99-158.55-158.55-158.55Z"/>
+  <rect class="cls-2" x="237.77" y="178.53" width="139.4" height="60.26" rx="30.13" ry="30.13"/>
+  <rect class="cls-2" x="156.57" y="265.85" width="220.6" height="60.26" rx="30.13" ry="30.13"/>
+</svg>
