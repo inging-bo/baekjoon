@@ -13,3 +13,4 @@ const total = [...listA, ...listB]
 console.log(total.sort((a,b) => a - b).join(" "))
 
 
+
