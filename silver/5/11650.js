@@ -6,18 +6,23 @@ const input = fs.readFileSync("input.txt").toString().trim().split("\r\n");
 
 const N = +input[0]
 let answer = []
+let list = []
 for (let i = 1; i <= N; i++) {
   let pos = input[i].split(" ").map(Number)
-  answer.push(pos)
+  list.push(pos)
 }
-
-console.log(answer.sort(([a,b],[c, d]) => {
-  if ( a === c) {
-    return b - d
-  } else {
+answer = list.sort(([a,b],[c, d]) => {
+  if ( b === d) {
     return a - c
+  } else {
+    return b - d
   }
-}))
+})
+
+
+answer.map(item => {
+  console.log(item.join(" "))
+})
 
 
 
